@@ -26,7 +26,9 @@ To exit the interactive terminal session and stop the container, simply type `ex
 ### Without Docker (using Ruby locally)
 
 #### Prepare
-`bundle install`
+```
+bundle install
+```
 
 ## Playing the Toy Robot game
 T.B.C
@@ -35,7 +37,11 @@ T.B.C
 Once you have setup the project (either using docker or installed locally) you can run the test suites.
 
 #### Run all tests
-`rspec`
+```
+rspec
+```
 
 #### Run one test file
-`rspec <file_path>`
+```
+rspec <file_path>
+```
