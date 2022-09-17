@@ -1,5 +1,5 @@
 # Toy Robot
-A Ruby program to simulate the toy robot
+A Ruby program to simulate the toy robot.
 
 ## Problem
-Please refer to PROBLEM.md to outline the speific requirements for this project
+Please refer to PROBLEM.md for the specific requirements for this project.
