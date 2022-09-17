@@ -38,43 +38,43 @@ describe Board do
     let(:board) { Board.new }
 
     context 'when the position is valid' do
-      let(:position) { Position.new(1, 1, "NORTH") }
+      let(:position) { Position.new(1, 1, 'NORTH') }
 
       it { expect(board.valid_position?(position)).to be true }
     end
 
     context 'when the x coordinate is too large' do
-      let(:position) { Position.new(9, 1, "NORTH") }
+      let(:position) { Position.new(9, 1, 'NORTH') }
 
       it { expect(board.valid_position?(position)).to be false }
     end
 
     context 'when the x coordinate is too small' do
-      let(:position) { Position.new(-1, 1, "NORTH") }
+      let(:position) { Position.new(-1, 1, 'NORTH') }
 
       it { expect(board.valid_position?(position)).to be false }
     end
 
     context 'when the y coordinate is too large' do
-      let(:position) { Position.new(1, 9, "NORTH") }
+      let(:position) { Position.new(1, 9, 'NORTH') }
 
       it { expect(board.valid_position?(position)).to be false }
     end
 
     context 'when the y coordinate is too small' do
-      let(:position) { Position.new(1, -1, "NORTH") }
+      let(:position) { Position.new(1, -1, 'NORTH') }
 
       it { expect(board.valid_position?(position)).to be false }
     end
 
     context 'when the x and y coordinates are too large' do
-      let(:position) { Position.new(9, 9, "NORTH") }
+      let(:position) { Position.new(9, 9, 'NORTH') }
 
       it { expect(board.valid_position?(position)).to be false }
     end
 
     context 'when the x and y coordinates are too small' do
-      let(:position) { Position.new(-1, -1, "NORTH") }
+      let(:position) { Position.new(-1, -1, 'NORTH') }
 
       it { expect(board.valid_position?(position)).to be false }
     end

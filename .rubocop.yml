@@ -1,0 +1,12 @@
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 2.7.3
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - Rakefile
+Style/Documentation:
+  Enabled: false

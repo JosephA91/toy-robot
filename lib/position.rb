@@ -3,7 +3,7 @@
 class Position
   attr_reader :x_coord, :y_coord, :direction
 
-  DIRECTIONS = ['NORTH', 'EAST', 'SOUTH', 'WEST'].freeze
+  DIRECTIONS = %w[NORTH EAST SOUTH WEST].freeze
   MOVE_LENGTH = 1
 
   def initialize(x_coord, y_coord, direction)
