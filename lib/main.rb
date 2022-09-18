@@ -22,7 +22,7 @@ puts "# Instructions below...\n\n"
 instructions.each { |step| puts step }
 
 loop do
-  puts 'input command (EXIT to quit) or (HELP for instructions): '
+  puts 'input command (EXIT to quit) or (HELP for instructions):'
 
   input = gets
 
