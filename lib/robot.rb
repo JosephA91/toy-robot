@@ -7,7 +7,7 @@ class Robot
     @current_position = nil
   end
 
-  def placed?
+  def on_board?
     !@current_position.nil?
   end
 end

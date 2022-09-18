@@ -32,23 +32,23 @@ describe Robot do
     end
   end
 
-  describe '#placed?' do
-    context 'when robot is placed on board' do
+  describe '#on_board?' do
+    context 'when robot is placed on the board' do
       let(:robot) { Robot.new }
       let(:position) { Position.new(1, 1, 'NORTH') }
 
       it 'returns true' do
         robot.current_position = position
 
-        expect(robot.placed?).to be true
+        expect(robot.on_board?).to be true
       end
     end
 
-    context 'when robot is not placed on board' do
+    context 'when robot is not placed on the board' do
       let(:robot) { Robot.new }
 
       it 'returns false' do
-        expect(robot.placed?).to be false
+        expect(robot.on_board?).to be false
       end
     end
   end

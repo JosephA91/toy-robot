@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
 require './lib/board'
 require './lib/robot'
 require './lib/position'
