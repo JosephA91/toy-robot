@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require './lib/board'
-require './lib/robot'
-require './lib/position'
 require './lib/commands/place'
 
 describe Commands::Place do
