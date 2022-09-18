@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'spec_helper'
+
 require './lib/commands/report'
 require './lib/commands/place'
 require './lib/commands/move'
@@ -22,7 +24,7 @@ describe Commands::Report do
       end
 
       it 'should report the robots current position' do
-        expect(report).to eq '1,1,NORTH'
+        expect { report }.to output("1,1,NORTH\n").to_stdout
       end
     end
 
@@ -31,7 +33,7 @@ describe Commands::Report do
         # PLACE 0,0,NORTH
         # MOVE
         # REPORT
-        # Output: '0,1,NORTH'
+        # Output: 0,1,NORTH
 
         let(:position) { Position.new(0, 0, 'NORTH') }
         let(:report) { Commands::Report.new(robot).run }
@@ -42,7 +44,7 @@ describe Commands::Report do
         end
 
         it 'should report the robots current position' do
-          expect(report).to eq '0,1,NORTH'
+          expect { report }.to output("0,1,NORTH\n").to_stdout
         end
       end
 
@@ -50,7 +52,7 @@ describe Commands::Report do
         # PLACE 0,0,NORTH
         # LEFT
         # REPORT
-        # Output: '0,0,WEST'
+        # Output: 0,0,WEST
 
         let(:position) { Position.new(0, 0, 'NORTH') }
         let(:report) { Commands::Report.new(robot).run }
@@ -61,7 +63,7 @@ describe Commands::Report do
         end
 
         it 'should report the robots current position' do
-          expect(report).to eq '0,0,WEST'
+          expect { report }.to output("0,0,WEST\n").to_stdout
         end
       end
 
@@ -72,7 +74,7 @@ describe Commands::Report do
         # LEFT
         # MOVE
         # REPORT
-        # Output: '3,3,NORTH'
+        # Output: 3,3,NORTH
 
         let(:position) { Position.new(1, 2, 'EAST') }
         let(:report) { Commands::Report.new(robot).run }
@@ -86,7 +88,7 @@ describe Commands::Report do
         end
 
         it 'should report the robots current position' do
-          expect(report).to eq '3,3,NORTH'
+          expect { report }.to output("3,3,NORTH\n").to_stdout
         end
       end
     end
@@ -100,7 +102,7 @@ describe Commands::Report do
       end
 
       it 'should report the robots current position' do
-        expect(report).to eq 'Robot is not on the board'
+        expect { report }.to output("Robot is not on the board\n").to_stdout
       end
     end
   end

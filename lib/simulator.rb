@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
-require './lib/commands/place'
-require './lib/commands/move'
-require './lib/commands/turn_right'
-require './lib/commands/turn_left'
-require './lib/commands/report'
+require_relative 'commands/place'
+require_relative 'commands/move'
+require_relative 'commands/turn_right'
+require_relative 'commands/turn_left'
+require_relative 'commands/report'
+require_relative 'position'
 
 class Simulator
   def initialize(robot, board)
@@ -13,7 +14,7 @@ class Simulator
   end
 
   def run(command)
-    command_items = command.upcase.delete('\r|\n|,').split.reject(&:empty?)
+    command_items = command.upcase.upcase.gsub(',', ' ').split.reject(&:empty?)
 
     case command_items[0]
     when /^PLACE$/
@@ -24,15 +25,15 @@ class Simulator
       direction = command_items[3]
       position = Position.new(x_coord, y_coord, direction)
 
-      Commands::Place.new(@robot, @board, position)
+      Commands::Place.new(@robot, @board, position).run
     when /^MOVE$/
-      Commands::Move.new(@robot, @board)
+      Commands::Move.new(@robot, @board).run
     when /^RIGHT$/
-      Commands::TurnRight.new(@robot)
+      Commands::TurnRight.new(@robot).run
     when /^LEFT$/
-      Commands::TurnLeft.new(@robot)
+      Commands::TurnLeft.new(@robot).run
     when /^REPORT$/
-      Commands::Report.new(@robot)
+      Commands::Report.new(@robot).run
     end
   end
 end

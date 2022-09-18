@@ -13,85 +13,191 @@ describe Simulator do
   let(:simulator) { Simulator.new(robot, board) }
 
   describe '#run' do
-    context 'when the command is valid' do
-      context '#PLACE' do
-        let(:place_command) { 'PLACE 1, 1, NORTH' }
-        let(:position_mock) { instance_double(Position, x_coord: 1, y_coord: 1, direction: 'NORTH') }
+    let(:report) { simulator.run('REPORT') }
 
-        it 'receives the place command' do
-          expect(Position).to receive(:new).with(1, 1, 'NORTH').and_return(position_mock)
-          expect(Commands::Place).to receive(:new).with(robot, board, position_mock)
+    context 'when the commands are valid' do
+      context 'places and moves' do
+        # PLACE 0,0,NORTH
+        # MOVE
+        # REPORT
+        # Output: 0,1,NORTH
 
-          simulator.run(place_command)
+        let(:commands) do
+          ['PLACE 0,0,NORTH', 'MOVE']
         end
 
-        it 'returns a place command' do
-          expect(simulator.run(place_command)).to be_a Commands::Place
-        end
-      end
+        it 'successfully runs and reports the commands' do
+          commands.each do |command|
+            simulator.run(command)
+          end
 
-      context '#MOVE' do
-        let(:move_command) { 'MOVE' }
-
-        it 'receives the move command' do
-          expect(Commands::Move).to receive(:new).with(robot, board)
-
-          simulator.run(move_command)
-        end
-
-        it 'returns a move command' do
-          expect(simulator.run(move_command)).to be_a Commands::Move
+          expect { report }.to output("0,1,NORTH\n").to_stdout
         end
       end
 
-      context '#RIGHT' do
-        let(:right_command) { 'RIGHT' }
+      context 'places and turns left' do
+        # PLACE 0,0,NORTH
+        # LEFT
+        # REPORT
+        # Output: 0,0,WEST
 
-        it 'receives the command' do
-          expect(Commands::TurnRight).to receive(:new).with(robot)
-
-          simulator.run(right_command)
+        let(:commands) do
+          ['PLACE 0,0,NORTH', 'LEFT']
         end
 
-        it 'returns a turn right command' do
-          expect(simulator.run(right_command)).to be_a Commands::TurnRight
-        end
-      end
+        it 'successfully runs and reports the commands' do
+          commands.each do |command|
+            simulator.run(command)
+          end
 
-      context '#LEFT' do
-        let(:left_command) { 'LEFT' }
-
-        it 'receives the command' do
-          expect(Commands::TurnLeft).to receive(:new).with(robot)
-
-          simulator.run(left_command)
-        end
-
-        it 'returns a turn left command' do
-          expect(simulator.run(left_command)).to be_a Commands::TurnLeft
+          expect { report }.to output("0,0,WEST\n").to_stdout
         end
       end
 
-      context '#REPORT' do
-        let(:report_command) { 'REPORT' }
+      context 'places and turns right' do
+        # PLACE 0,0,NORTH
+        # RIGHT
+        # REPORT
+        # Output: 0,0,EAST
 
-        it 'receives the command' do
-          expect(Commands::Report).to receive(:new).with(robot)
-
-          simulator.run(report_command)
+        let(:commands) do
+          ['PLACE 0,0,NORTH', 'RIGHT']
         end
 
-        it 'returns a report command' do
-          expect(simulator.run(report_command)).to be_a Commands::Report
+        it 'successfully runs and reports the commands' do
+          commands.each do |command|
+            simulator.run(command)
+          end
+
+          expect { report }.to output("0,0,EAST\n").to_stdout
+        end
+      end
+
+      context 'executes multiple commands' do
+        # PLACE 1,2,EAST
+        # MOVE
+        # MOVE
+        # LEFT
+        # MOVE
+        # REPORT
+        # Output: 3,3,NORTH
+
+        let(:commands) do
+          ['PLACE 1,2,EAST', 'MOVE', 'MOVE', 'LEFT', 'MOVE']
+        end
+
+        it 'successfully runs and reports the commands' do
+          commands.each do |command|
+            simulator.run(command)
+          end
+
+          expect { report }.to output("3,3,NORTH\n").to_stdout
+        end
+      end
+
+      context 'keep robot on the board' do
+        # PLACE 4,4,NORTH
+        # MOVE
+        # MOVE
+        # MOVE
+        # MOVE
+        # MOVE
+        # REPORT
+        # Output: 4,4,NORTH
+
+        let(:commands) do
+          ['PLACE 4,4,NORTH', 'MOVE', 'MOVE', 'MOVE', 'MOVE', 'MOVE']
+        end
+
+        it 'successfully runs and reports the commands' do
+          commands.each do |command|
+            simulator.run(command)
+          end
+
+          expect { report }.to output("4,4,NORTH\n").to_stdout
+        end
+      end
+
+      context 'when the commands are lowercase' do
+        let(:commands) do
+          ['place 1,2,east', 'move', 'move', 'left', 'move']
+        end
+
+        it 'successfully runs and reports the commands' do
+          commands.each do |command|
+            simulator.run(command)
+          end
+
+          expect { report }.to output("3,3,NORTH\n").to_stdout
+        end
+      end
+
+      context 'when the commands include spaces' do
+        let(:commands) do
+          ['  place 1,2,east ', ' move ', '  move ', ' left ', '   move']
+        end
+
+        it 'successfully runs and reports the commands' do
+          commands.each do |command|
+            simulator.run(command)
+          end
+
+          expect { report }.to output("3,3,NORTH\n").to_stdout
         end
       end
     end
 
-    context 'when the command is invalid' do
-      let(:invalid_command) { 'PLACE' }
+    context 'when commands are invlaid' do
+      context 'when the inital place command is invalid' do
+        let(:command) { 'PLACE' }
 
-      it 'returns nil' do
-        expect(simulator.run(invalid_command)).to be nil
+        it 'ignores commands before robot is placed' do
+          simulator.run(command)
+
+          expect { report }.to output("Robot is not on the board\n").to_stdout
+        end
+      end
+
+      context 'when the commands include invalid items' do
+        let(:commands) do
+          ['place 1,2,east', 'move', 'move', 'dsfqwfqwef', 'left', 'wefefwq wefqwef', 'move']
+        end
+
+        it 'successfully runs and reports the commands' do
+          commands.each do |command|
+            simulator.run(command)
+          end
+
+          expect { report }.to output("3,3,NORTH\n").to_stdout
+        end
+      end
+
+      context 'when the robot is placed off the board' do
+        let(:commands) do
+          ['place 9,20,east', 'move']
+        end
+
+        it 'does not place the robot and returns an error message' do
+          commands.each do |command|
+            simulator.run(command)
+          end
+
+          expect { report }.to output("Robot is not on the board\n").to_stdout
+        end
+      end
+
+      context 'when the robot is not placed' do
+        let(:commands) do
+          %w[right left move]
+        end
+
+        it 'ignores commands before robot is placed' do
+          commands.each do |command|
+            simulator.run(command)
+          end
+
+          expect { report }.to output("Robot is not on the board\n").to_stdout
+        end
       end
     end
   end

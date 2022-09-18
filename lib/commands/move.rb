@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'commands/base'
+require_relative 'base'
 
 module Commands
   class Move < Commands::Base

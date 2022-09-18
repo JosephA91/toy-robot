@@ -31,7 +31,10 @@ bundle install
 ```
 
 ## Playing the Toy Robot game
-T.B.C
+Once you have setup the project (either using docker or installed locally) you can play the game.
+```
+ruby lib/main.rb
+```
 
 ## Running the tests
 Once you have setup the project (either using docker or installed locally) you can run the test suites.
@@ -44,4 +47,9 @@ rspec
 #### Run one test file
 ```
 rspec <file_path>
+```
+
+#### Run rubocop
+```
+rubocop
 ```
