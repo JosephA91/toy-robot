@@ -53,3 +53,57 @@ rspec <file_path>
 ```
 rubocop
 ```
+
+## Test data for the game
+
+### Scenario 1: Can place robot and move
+#### Commands:
+```
+PLACE 0,0,NORTH
+MOVE
+REPORT
+```
+Output: 0,1,NORTH
+
+### Scenario 2: Can place robot and turn left
+#### Commands:
+```
+PLACE 0,0,NORTH
+LEFT
+REPORT
+```
+Output: 0,0,WEST
+
+### Scenario 3: Can place robot and turn right
+#### Commands:
+```
+PLACE 0,0,NORTH
+RIGHT
+REPORT
+```
+Output: 0,0,EAST
+
+### Scenario 4: Can place robot and execute multiple commands
+#### Commands:
+```
+PLACE 1,2,EAST
+MOVE
+MOVE
+LEFT
+MOVE
+REPORT
+```
+Output: 3,3,NORTH
+
+### Scenario 5: Can place robot and keep on the board
+#### Commands:
+```
+PLACE 4,4,NORTH
+MOVE
+MOVE
+MOVE
+MOVE
+MOVE
+REPORT
+```
+Output: 4,4,NORTH
