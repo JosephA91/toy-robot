@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require './lib/robot'
+require './lib/position'
 
 describe Robot do
   describe '#current_position' do

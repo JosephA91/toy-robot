@@ -19,6 +19,9 @@ class Position
   end
 
   def turn_right
+    # Modulus is required when the new index is equal to the array length
+    # Example: new index = 4 && array.length = 4
+    # In this case return 0 index
     DIRECTIONS[(DIRECTIONS.index(direction) + 1) % DIRECTIONS.length]
   end
 

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'commands/base'
+
 module Commands
   class TurnLeft < Commands::Base
     def run

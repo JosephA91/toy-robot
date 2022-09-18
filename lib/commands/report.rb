@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'commands/base'
+
 module Commands
   class Report < Commands::Base
     ROBOT_NOT_ON_BOARD_MESSAGE = 'Robot is not on the board'

@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 require './lib/commands/place'
+require './lib/robot'
+require './lib/board'
+require './lib/position'
 
 describe Commands::Place do
   describe '#run' do
@@ -12,11 +15,36 @@ describe Commands::Place do
     end
 
     context 'with a valid position' do
-      # Check all the directions
-      let(:position) { Position.new(1, 1, 'NORTH') }
+      context 'with NORTH direction' do
+        let(:position) { Position.new(1, 1, 'NORTH') }
 
-      it 'places the robot on the board' do
-        expect(robot.current_position).to eq position
+        it 'places the robot on the board' do
+          expect(robot.current_position).to eq position
+        end
+      end
+
+      context 'with EAST direction' do
+        let(:position) { Position.new(1, 1, 'EAST') }
+
+        it 'places the robot on the board' do
+          expect(robot.current_position).to eq position
+        end
+      end
+
+      context 'with SOUTH direction' do
+        let(:position) { Position.new(1, 1, 'SOUTH') }
+
+        it 'places the robot on the board' do
+          expect(robot.current_position).to eq position
+        end
+      end
+
+      context 'with WEST direction' do
+        let(:position) { Position.new(1, 1, 'WEST') }
+
+        it 'places the robot on the board' do
+          expect(robot.current_position).to eq position
+        end
       end
     end
 

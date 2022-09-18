@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 require './lib/commands/report'
+require './lib/commands/place'
+require './lib/commands/move'
+require './lib/commands/turn_left'
+require './lib/robot'
+require './lib/board'
+require './lib/position'
 
 describe Commands::Report do
   describe '#run' do

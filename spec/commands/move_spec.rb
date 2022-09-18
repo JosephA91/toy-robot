@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 require './lib/commands/move'
+require './lib/robot'
+require './lib/board'
+require './lib/position'
 
 describe Commands::Move do
   describe '#run' do

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require './lib/commands/turn_left'
+require './lib/robot'
+require './lib/position'
 
 describe Commands::TurnLeft do
   describe '#run' do

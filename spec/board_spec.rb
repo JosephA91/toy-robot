@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require './lib/board'
+require './lib/position'
 
 describe Board do
   describe '#initialize' do
