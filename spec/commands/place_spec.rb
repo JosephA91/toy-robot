@@ -10,12 +10,15 @@ describe Commands::Place do
     let(:robot) { Robot.new }
     let(:board) { Board.new }
 
+    before(:each) do
+      Commands::Place.new(robot, board, position).run
+    end
+
     context 'with a valid position' do
+      # Check all the directions
       let(:position) { Position.new(1, 1, 'NORTH') }
 
       it 'places the robot on the board' do
-        Commands::Place.new(robot, board, position).run
-
         expect(robot.current_position).to eq position
       end
     end
@@ -24,8 +27,6 @@ describe Commands::Place do
       let(:position) { Position.new(9, 9, 'NORTH') }
 
       it 'does not place the robot on the board' do
-        Commands::Place.new(robot, board, position).run
-
         expect(robot.current_position).to eq nil
       end
     end

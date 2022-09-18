@@ -18,11 +18,11 @@ class Position
     move_in_direction(direction)
   end
 
-  def right
+  def turn_right
     DIRECTIONS[(DIRECTIONS.index(direction) + 1) % DIRECTIONS.length]
   end
 
-  def left
+  def turn_left
     DIRECTIONS[(DIRECTIONS.index(direction) - 1) % DIRECTIONS.length]
   end
 

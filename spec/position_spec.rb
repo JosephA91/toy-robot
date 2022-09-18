@@ -28,8 +28,7 @@ describe Position do
       let(:direction) { 'NORTH' }
       let(:new_position) { position.move(direction) }
 
-      it 'should move NORTH' do
-        # Position.new(1, 2, direction)
+      it 'should move in the NORTH direction' do
         expect(new_position.x_coord).to eq 1
         expect(new_position.y_coord).to eq 2
         expect(new_position.direction).to eq direction
@@ -41,8 +40,7 @@ describe Position do
       let(:direction) { 'EAST' }
       let(:new_position) { position.move(direction) }
 
-      it 'should move EAST' do
-        # Position.new(2, 1, direction)
+      it 'should move in the EAST direction' do
         expect(new_position.x_coord).to eq 2
         expect(new_position.y_coord).to eq 1
         expect(new_position.direction).to eq direction
@@ -54,8 +52,7 @@ describe Position do
       let(:direction) { 'SOUTH' }
       let(:new_position) { position.move(direction) }
 
-      it 'should move SOUTH' do
-        # Position.new(1, 0, direction)
+      it 'should move in the SOUTH direction' do
         expect(new_position.x_coord).to eq 1
         expect(new_position.y_coord).to eq 0
         expect(new_position.direction).to eq direction
@@ -67,8 +64,7 @@ describe Position do
       let(:direction) { 'WEST' }
       let(:new_position) { position.move(direction) }
 
-      it 'should move WEST' do
-        # Position.new(0, 1, direction)
+      it 'should move in the WEST direction' do
         expect(new_position.x_coord).to eq 0
         expect(new_position.y_coord).to eq 1
         expect(new_position.direction).to eq direction
@@ -79,18 +75,18 @@ describe Position do
       let(:position) { Position.new(1, 1, direction) }
       let(:direction) { 'UP' }
 
-      it 'should move NORTH' do
+      it 'should not move' do
         expect(position.move(direction)).to eq nil
       end
     end
   end
 
-  describe '#right' do
+  describe '#turn_right' do
     context 'when direction is NORTH' do
       let(:position) { Position.new(1, 1, 'NORTH') }
 
       it 'should return EAST' do
-        expect(position.right).to eq 'EAST'
+        expect(position.turn_right).to eq 'EAST'
       end
     end
 
@@ -98,7 +94,7 @@ describe Position do
       let(:position) { Position.new(1, 1, 'EAST') }
 
       it 'should return SOUTH' do
-        expect(position.right).to eq 'SOUTH'
+        expect(position.turn_right).to eq 'SOUTH'
       end
     end
 
@@ -106,7 +102,7 @@ describe Position do
       let(:position) { Position.new(1, 1, 'SOUTH') }
 
       it 'should return WEST' do
-        expect(position.right).to eq 'WEST'
+        expect(position.turn_right).to eq 'WEST'
       end
     end
 
@@ -114,7 +110,7 @@ describe Position do
       let(:position) { Position.new(1, 1, 'WEST') }
 
       it 'should return NORTH' do
-        expect(position.right).to eq 'NORTH'
+        expect(position.turn_right).to eq 'NORTH'
       end
     end
   end
@@ -124,7 +120,7 @@ describe Position do
       let(:position) { Position.new(1, 1, 'NORTH') }
 
       it 'should return WEST' do
-        expect(position.left).to eq 'WEST'
+        expect(position.turn_left).to eq 'WEST'
       end
     end
 
@@ -132,7 +128,7 @@ describe Position do
       let(:position) { Position.new(1, 1, 'EAST') }
 
       it 'should return NORTH' do
-        expect(position.left).to eq 'NORTH'
+        expect(position.turn_left).to eq 'NORTH'
       end
     end
 
@@ -140,7 +136,7 @@ describe Position do
       let(:position) { Position.new(1, 1, 'SOUTH') }
 
       it 'should return EAST' do
-        expect(position.left).to eq 'EAST'
+        expect(position.turn_left).to eq 'EAST'
       end
     end
 
@@ -148,7 +144,7 @@ describe Position do
       let(:position) { Position.new(1, 1, 'WEST') }
 
       it 'should return SOUTH' do
-        expect(position.left).to eq 'SOUTH'
+        expect(position.turn_left).to eq 'SOUTH'
       end
     end
   end
