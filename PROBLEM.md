@@ -1,8 +1,10 @@
-# Toy Robot Problem and Requirements
+# Toy Robot
 
 #### What is this ?
 
-A Ruby program to simulate the toy robot.
+Toy Robot is a ruby coding exercise that we get our potential candidates complete for us (Mable) to understand their capabilities.
+
+#### What do I need to do ?
 
 ## Specification
 
@@ -14,8 +16,7 @@ A Ruby program to simulate the toy robot.
   prevented from falling to destruction. Any movement that would result in the
   robot falling from the table must be prevented, however further valid
   movement commands must still be allowed.
-
-Create an application that can read in commands of the following form:
+- Create an application that can read in commands of the following form:
 
 ```
 PLACE X,Y,F
@@ -75,3 +76,38 @@ MOVE
 REPORT
 ```
 Output: `3,3,NORTH`
+
+#### Why am I doing this ?
+
+At Mable we belive these kind of coding challenges will give us more visibility on the candidate's strengths. On the other have, candidates can show their
+capabilities by applying what they already know.
+
+#### What’s next ?
+
+- clone this repo
+- Do your changes
+- Email us the link to your public git repo with the solution
+
+
+#### What do We expect as deliveries?
+
+While we love to see a working code, the most important aspects we are looking in to is,
+
+- How you would approach a problem
+- How you approach around testing
+- Any other related documents (E.g README) that will help someone to set up and run this project.
+
+#### What are the next steps ?
+
+Once you completed the exercise and let us know, we'll go through your code and if we are happy with your code, we'll contact you for the next step, which is a
+discussion on this code and your thinking / approach to this problem.
+
+#### Toy robot is a very common coding test and I can find heaps of sample code ?
+
+Yes, true, this is a very famous common test. However, we sincerely hope that you'll not just copy and paste a code from internet :).
+
+In Fact the author of this test himself has described, why this test is still relevant, even though there are many examples out there
+
+[Toy Robot Coding Puzzle](https://joneaves.wordpress.com/2014/07/21/toy-robot-coding-test/)
+
+All the very best !!!
