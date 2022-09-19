@@ -138,3 +138,11 @@ PLACE 1,t,1
 REPORT
 ```
 Output: Robot is not on the board
+
+### Scenario 9: Can handle invalid place command with valid direction
+#### Commands:
+```
+PLACE 1,t,NORTH
+REPORT
+```
+Output: Robot is not on the board
