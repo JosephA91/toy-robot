@@ -158,6 +158,36 @@ describe Simulator do
         end
       end
 
+      context 'when the inital place command has an invalid direction' do
+        let(:command) { 'PLACE 1,1,1' }
+
+        it 'ignores commands before robot is placed' do
+          simulator.run(command)
+
+          expect { report }.to output("Robot is not on the board\n").to_stdout
+        end
+      end
+
+      context 'when the inital place command has an incorrectly spelled direction' do
+        let(:command) { 'PLACE 1,1,NORTHH' }
+
+        it 'ignores commands before robot is placed' do
+          simulator.run(command)
+
+          expect { report }.to output("Robot is not on the board\n").to_stdout
+        end
+      end
+
+      context 'when the inital place command has an invalid position' do
+        let(:command) { 'PLACE e,t,NORTH' }
+
+        it 'ignores commands before robot is placed' do
+          simulator.run(command)
+
+          expect { report }.to output("Robot is not on the board\n").to_stdout
+        end
+      end
+
       context 'when the commands include invalid items' do
         let(:commands) do
           ['place 1,2,east', 'move', 'move', 'dsfqwfqwef', 'left', 'wefefwq wefqwef', 'move']

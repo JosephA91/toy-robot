@@ -14,16 +14,15 @@ class Simulator
   end
 
   def run(command)
-    command_items = command.upcase.upcase.gsub(',', ' ').split.reject(&:empty?)
+    command_items = command.upcase.gsub(',', ' ').split.reject(&:empty?)
 
     case command_items[0]
     when /^PLACE$/
-      return unless command_items.count == 4
+      return unless valid_command_items?(command_items)
 
-      x_coord = command_items[1].to_i
-      y_coord = command_items[2].to_i
-      direction = command_items[3]
-      position = Position.new(x_coord, y_coord, direction)
+      _, x_coord, y_coord, direction = command_items
+
+      position = Position.new(x_coord.to_i, y_coord.to_i, direction)
 
       Commands::Place.new(@robot, @board, position).run
     when /^MOVE$/
@@ -35,5 +34,16 @@ class Simulator
     when /^REPORT$/
       Commands::Report.new(@robot).run
     end
+  end
+
+  private
+
+  def valid_command_items?(command_items)
+    return false unless command_items.count == 4
+
+    return false unless command_items[1].match(/^[0-9]$/) &&
+                        command_items[2].match(/^[0-9]$/)
+
+    Position::DIRECTIONS.include?(command_items[3])
   end
 end

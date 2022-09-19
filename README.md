@@ -107,3 +107,34 @@ MOVE
 REPORT
 ```
 Output: 4,4,NORTH
+
+### Scenario 6: Can place robot and skip invalid commands
+#### Commands:
+```
+PLACE 1,2,EAST
+NOT_VALID
+MOVE
+MOVE
+wgwergewrgerg
+LEFT
+MOVE
+wergwergwerg
+REPORT
+```
+Output: 3,3,NORTH
+
+### Scenario 7: Can handle invalid place command
+#### Commands:
+```
+PLACE 1,2,1
+REPORT
+```
+Output: Robot is not on the board
+
+### Scenario 8: Can handle invalid place command
+#### Commands:
+```
+PLACE 1,t,1
+REPORT
+```
+Output: Robot is not on the board
